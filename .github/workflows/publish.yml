@@ -1,4 +1,4 @@
-name: Publish package
+name: Build and Publish package
 
 on: workflow_dispatch
 
@@ -10,10 +10,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Install Dependencies (updates only if needed)
     - name: Install Dependencies
       run: sudo apt update && sudo apt-get install -y zip libssl-dev zlib1g-dev g++ gperf cmake
-
 
     - name: Clone repo, Configure and build
       run: |
@@ -25,13 +23,19 @@ jobs:
         cmake --build .
         zip telegram-bot-api.zip telegram-bot-api
 
+    - name: Set Release Info
+      id: release
+      run: |
+        echo "TAG=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        echo "TITLE=Build #${GITHUB_RUN_NUMBER} - $(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
     - name: Automatic Release
       uses: marvinpinto/action-automatic-releases@latest
       with: 
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
+        automatic_release_tag: "${{ env.TAG }}"
         prerelease: false
-        title: "Latest Build"
+        title: "${{ env.TITLE }}"
         files: |
           telegram-bot-api/build/telegram-bot-api
           telegram-bot-api/build/telegram-bot-api.zip
