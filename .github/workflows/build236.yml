@@ -1,4 +1,4 @@
-name: Build and Publish package
+name: Build GLIBC 2.36 and Publish package
 
 on: workflow_dispatch
 
