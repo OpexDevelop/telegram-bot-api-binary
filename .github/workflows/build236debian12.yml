@@ -1,0 +1,44 @@
+name: Build telegram-bot-api with GLIBC 2.36
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-glibc236:
+    runs-on: ubuntu-latest
+    container: debian:12
+    permissions: write-all
+    steps:
+      - name: Install dependencies
+        run: |
+          apt update
+          apt install -y git zip libssl-dev zlib1g-dev g++ gperf cmake
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Clone telegram-bot-api and build
+        run: |
+          git clone --recursive https://github.com/tdlib/telegram-bot-api.git
+          cd telegram-bot-api
+          mkdir build && cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build .
+          zip telegram-bot-api.zip telegram-bot-api
+
+      - name: Set release info
+        id: release
+        run: |
+          echo "TAG=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "TITLE=Build #${GITHUB_RUN_NUMBER} - $(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Publish release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ env.TAG }}-glibc236"
+          prerelease: false
+          title: "${{ env.TITLE }} GLIBC 2.36"
+          files: |
+            telegram-bot-api/build/telegram-bot-api
+            telegram-bot-api/build/telegram-bot-api.zip
