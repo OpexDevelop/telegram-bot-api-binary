@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the URL of the file to download
-file_url="https://github.com/jakbin/telegram-bot-api-binary/releases/download/latest/telegram-bot-api"
+file_url="https://github.com/OpexDevelop/telegram-bot-api-binary/releases/download/latest/telegram-bot-api"
 
 # Define the filename (extracted from the URL)
 filename=$(basename "$file_url")
