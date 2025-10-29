@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
-ENV API_ID ""
-ENV API_HASH ""
+ENV API_ID=""
+ENV API_HASH=""
 
 RUN apt update && apt install wget -y
 
