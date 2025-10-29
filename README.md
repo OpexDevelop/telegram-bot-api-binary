@@ -1,8 +1,8 @@
 # 🤖 Telegram Bot API Binary
 
- [![Publish Docker Image](https://github.com/jakbin/telegram-bot-api-binary/actions/workflows/publish-docker.yml/badge.svg)](https://github.com/jakbin/telegram-bot-api-binary/actions/workflows/publish-docker.yml)
- [![Publish package](https://github.com/jakbin/telegram-bot-api-binary/actions/workflows/publish.yml/badge.svg)](https://github.com/jakbin/telegram-bot-api-binary/actions/workflows/publish.yml)
- [![All Downloads](https://img.shields.io/github/downloads/jakbin/telegram-bot-api-binary/total.svg)](https://github.com/jakbin/telegram-bot-api-binary)
+ [![Publish Docker Image](https://github.com/OpexDevelop/telegram-bot-api-binary/actions/workflows/publish-docker.yml/badge.svg)](https://github.com/OpexDevelop/telegram-bot-api-binary/actions/workflows/publish-docker.yml)
+ [![Publish package](https://github.com/OpexDevelop/telegram-bot-api-binary/actions/workflows/publish.yml/badge.svg)](https://github.com/OpexDevelop/telegram-bot-api-binary/actions/workflows/publish.yml)
+ [![All Downloads](https://img.shields.io/github/downloads/OpexDevelop/telegram-bot-api-binary/total.svg)](https://github.com/OpexDevelop/telegram-bot-api-binary)
 
 🚀 Pre-compiled [Telegram Bot API](https://github.com/tdlib/telegram-bot-api) binary for easy deployment
 
@@ -35,17 +35,17 @@ Running your own Telegram Bot API server provides several advantages over using 
 ## 🐳 Run using Docker
 
 ```sh
-docker pull ghcr.io/jakbin/telegram-bot-api-binary:main
+docker pull ghcr.io/OpexDevelop/telegram-bot-api-binary:main
 ```
 
 ```sh
-docker run -d -p 8081:8081 -e API_ID=<your_api_id> -e API_HASH=<your_api_hash> ghcr.io/jakbin/telegram-bot-api-binary:main
+docker run -d -p 8081:8081 -e API_ID=<your_api_id> -e API_HASH=<your_api_hash> ghcr.io/OpexDevelop/telegram-bot-api-binary:main
 ```
 
 ## 💻 Run direct from terminal
 
 ```sh
-curl -L https://github.com/jakbin/telegram-bot-api-binary/raw/main/run.sh  | bash -s your_api_id your_api_hash
+curl -L https://github.com/OpexDevelop/telegram-bot-api-binary/raw/main/run.sh  | bash -s your_api_id your_api_hash
 ```
 
 ## 🔗 Original Repository
